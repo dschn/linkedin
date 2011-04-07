@@ -2,8 +2,12 @@ module LinkedIn
 
   module RequestHelpers
 
+    def profile_options
+      ":(id,first-name,last-name,industry,location,headline,current-status,distance,summary)" #connectons,educations,positions,
+    end
+    
     def get(path, options={})
-      path = "/v1#{path}"
+      path = "/v1#{path}#{profile_options}" if path.match(/people/)      
       response = access_token.get(path, options)
       raise_errors(response)
       response.body

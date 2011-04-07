@@ -1,3 +1,5 @@
+require 'pp'
+
 module LinkedIn
   class Client
     include ToXmlHelpers
@@ -18,6 +20,7 @@ module LinkedIn
 
     def profile(options={})
       path   = person_path(options)
+
       fields = options[:fields] || LinkedIn.default_profile_fields
 
       if options[:public]
@@ -26,7 +29,9 @@ module LinkedIn
         path +=":(#{fields.map{ |f| f.to_s.gsub("_","-") }.join(',')})"
       end
 
-      Profile.from_xml(get(path))
+      profile = get(path)
+
+      options[:as_xml] ? profile : Profile.from_xml(profile)
     end
 
     def connections(options={})
