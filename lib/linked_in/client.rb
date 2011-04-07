@@ -1,5 +1,3 @@
-require 'pp'
-
 module LinkedIn
   class Client
     include ToXmlHelpers
