@@ -3,7 +3,7 @@ module LinkedIn
   module RequestHelpers
 
     def profile_options
-      ":(id,first-name,last-name,industry,location,headline,current-status,distance,summary)" #connectons,educations,positions,
+      ":(id,first-name,last-name,industry,location,num-recommenders,headline,current-status,distance,summary,site-standard-profile-request)" #connectons,educations,positions,
     end
     
     def get(path, options={})
